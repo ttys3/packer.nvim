@@ -30,7 +30,7 @@ end
 
 vim.api.nvim_command('packadd packer.nvim')
 
-local no_errors = pcall(function()
+local no_errors, err_message = pcall(function()
 ]]
 
 local catch_errors = [[
@@ -47,6 +47,7 @@ end)
 
 if not no_errors then
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: ".v:exception | echom "Please check your config for correctness" | echohl None')
+  vim.api.nvim_err_writeln(err_message)
 end
 ]]
 
